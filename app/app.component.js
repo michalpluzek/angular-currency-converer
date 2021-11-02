@@ -24,6 +24,7 @@ System.register(["@angular/core", "./exchange.service"], function(exports_1, con
             AppComponent = (function () {
                 function AppComponent(exchangeService) {
                     this.exchangeService = exchangeService;
+                    this.now = Date.now();
                     this.baseCurrency = "USD";
                     this.targetCurrency = "GBP";
                     this.baseAmount = 1;
@@ -43,9 +44,9 @@ System.register(["@angular/core", "./exchange.service"], function(exports_1, con
                     core_1.Component({
                         selector: "converter",
                         providers: [exchange_service_1.ExchangeService],
-                        template: "\n    <input\n      type=\"number\"\n      [(ngModel)]=\"baseAmount\"\n      [ngClass]=\"{ error: isValid(baseAmount), warning: baseAmount < 0 }\"\n    />\n    <currency-select [(selected)]=\"baseCurrency\"> </currency-select>\n    = <strong>{{ targetAmount }}</strong>\n    <currency-select [(selected)]=\"targetCurrency\"> </currency-select>\n    <p *ngIf=\"isValid(baseAmount)\">Prosz\u0119 poda\u0107 warto\u015B\u0107 do przeliczenia</p>\n  ",
+                        template: "\n    <p>{{ now | date: \"fullDate\" }}</p>\n    <input\n      type=\"number\"\n      [(ngModel)]=\"baseAmount\"\n      [ngClass]=\"{ error: isValid(baseAmount), warning: baseAmount < 0 }\"\n    />\n    <currency-select [(selected)]=\"baseCurrency\"> </currency-select>\n    = <strong>{{ targetAmount | number: \"1.2-2\" }}</strong>\n    <currency-select [(selected)]=\"targetCurrency\"> </currency-select>\n    <p *ngIf=\"isValid(baseAmount)\">Prosz\u0119 poda\u0107 warto\u015B\u0107 do przeliczenia</p>\n  ",
                         styles: [
-                            "\n      input[type=\"number\"] {\n        width: 10ex;\n        text-align: right;\n      }\n      .error {\n        background-color: #ff5555;\n      }\n      .warning {\n        background-color: #cccccc;\n      }\n      .hidden {\n        display: none;\n      }\n    ",
+                            "\n      input[type=\"number\"] {\n        width: 10ex;\n        text-align: right;\n      }\n      .error {\n        background-color: #ff5555;\n      }\n      .warning {\n        background-color: #cccccc;\n      }\n    ",
                         ],
                     }), 
                     __metadata('design:paramtypes', [exchange_service_1.ExchangeService])

@@ -5,13 +5,14 @@ import { ExchangeService } from "./exchange.service";
   selector: "converter",
   providers: [ExchangeService],
   template: `
+    <p>{{ now | date: "fullDate" }}</p>
     <input
       type="number"
       [(ngModel)]="baseAmount"
       [ngClass]="{ error: isValid(baseAmount), warning: baseAmount < 0 }"
     />
     <currency-select [(selected)]="baseCurrency"> </currency-select>
-    = <strong>{{ targetAmount }}</strong>
+    = <strong>{{ targetAmount | number: "1.2-2" }}</strong>
     <currency-select [(selected)]="targetCurrency"> </currency-select>
     <p *ngIf="isValid(baseAmount)">Proszę podać wartość do przeliczenia</p>
   `,
@@ -27,13 +28,11 @@ import { ExchangeService } from "./exchange.service";
       .warning {
         background-color: #cccccc;
       }
-      .hidden {
-        display: none;
-      }
     `,
   ],
 })
 export class AppComponent {
+  now = Date.now();
   baseCurrency: string = "USD";
   targetCurrency: string = "GBP";
   baseAmount: number = 1;
