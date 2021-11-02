@@ -12,7 +12,7 @@ import { ExchangeService } from "./exchange.service";
       [ngClass]="{ error: isValid(baseAmount), warning: baseAmount < 0 }"
     />
     <currency-select [(selected)]="baseCurrency"> </currency-select>
-    = <strong>{{ targetAmount | number: "1.2-2" }}</strong>
+    = <strong>{{ targetAmount | mypipe }}</strong>
     <currency-select [(selected)]="targetCurrency"> </currency-select>
     <p *ngIf="isValid(baseAmount)">Proszę podać wartość do przeliczenia</p>
   `,
